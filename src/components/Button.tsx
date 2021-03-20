@@ -30,7 +30,7 @@ const Secondary = css`
 const Clear = css`
     color: ${Colors.black};
     background-color: transparent;
-    border: 2px solid #CDCDCD;
+    background: #E2E2E2;
     box-shadow: none;
     :hover {
         background: #CDCDCD;

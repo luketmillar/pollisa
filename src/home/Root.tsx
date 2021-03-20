@@ -2,11 +2,28 @@ import React from 'react'
 import * as Models from 'models'
 import * as Poll from 'poll'
 
-const question: Models.Questions.IShortResponse = {
+const question: Models.Questions.ICheckboxQuestion = {
     id: '1',
-    type: 'short-response',
+    type: 'checkboxes',
     prompt: 'What meals do you eat?',
-    placeholder: 'Meal'
+    options: [
+        {
+            label: 'Breakfast',
+            value: 'breakfast'
+        },
+        {
+            label: 'Lunch',
+            value: 'lunch'
+        },
+        {
+            label: 'Dinner',
+            value: 'dinner'
+        },
+        {
+            label: 'Dessert',
+            value: 'dessert'
+        },
+    ]
 }
 
 const Home = () => {
