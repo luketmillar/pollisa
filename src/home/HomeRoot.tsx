@@ -1,11 +1,12 @@
 import { Button, Input } from 'components'
 import React from 'react'
+import { Router } from 'core'
 
 const Home = () => {
     return <div style={{ padding: 24 }}>
         <h1>Tadpoll</h1>
         <div style={{ height: 200 }} />
-        <Button style={{ width: '100%' }} variant='primary'>Create a poll</Button>
+        <Button onClick={() => Router.navigate.goTo(Router.paths.creator)} style={{ width: '100%' }} variant='primary'>Create a poll</Button>
         <div style={{ height: 24 }} />
         <div style={{ textAlign: 'center' }}>or</div>
         <div style={{ height: 24 }} />

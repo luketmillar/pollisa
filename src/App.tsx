@@ -4,9 +4,9 @@ import Routes from './Routes'
 
 function App() {
   return (
-    <Router>
+    <Router.Provider>
       <Routes />
-    </Router>
+    </Router.Provider>
   )
 }
 
