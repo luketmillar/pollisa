@@ -3,7 +3,7 @@ import React from 'react'
 
 const Home = () => {
     return <div style={{ padding: 24 }}>
-        <h1>Pollisa</h1>
+        <h1>Tadpoll</h1>
         <div style={{ height: 200 }} />
         <Button style={{ width: '100%' }} variant='primary'>Create a poll</Button>
         <div style={{ height: 24 }} />
