@@ -2,9 +2,9 @@ import React from 'react'
 import * as Models from 'models'
 import * as Poll from 'poll'
 
-const question: Models.Questions.ICheckboxQuestion = {
+const question: Models.Questions.IRadioQuestion = {
     id: '1',
-    type: 'checkboxes',
+    type: 'radio',
     prompt: 'What meals do you eat?',
     options: [{
         label: 'Breakfast',
@@ -27,7 +27,7 @@ const question: Models.Questions.ICheckboxQuestion = {
 const Home = () => {
     return <div>
         <div style={{ height: 200 }} />
-        <Poll.Questions.Checkbox question={question} />
+        <Poll.Questions.Radio question={question} />
     </div>
 }
 
