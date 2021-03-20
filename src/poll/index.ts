@@ -1,2 +1,2 @@
-export { default as Root } from './Root'
+export { default as Root } from './PollRoot'
 export * as Questions from './Question'
