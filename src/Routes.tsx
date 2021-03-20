@@ -1,17 +1,20 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
+import * as Home from './home'
+import * as Creator from './creator'
+import * as Poll from './poll'
 
 function Routes() {
     return (
         <Switch>
             <Route exact path="/">
-                <div>home</div>
+                <Home.Root />
             </Route>
             <Route exact path="/create">
-                <div>creator</div>
+                <Creator.Root />
             </Route>
             <Route exact path="/poll/:pollId">
-                <div>poll</div>
+                <Poll.Root />
             </Route>
             <Route>
                 <div>404</div>
