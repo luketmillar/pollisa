@@ -23,6 +23,7 @@ export interface ICheckboxQuestion extends IQuestion {
 
 export interface IShortResponse extends IQuestion {
     type: 'short-response'
+    placeholder: string
 }
 
 export interface ILongResponse extends IQuestion {

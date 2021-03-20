@@ -12,7 +12,7 @@ const RadioQuestion = ({ question }: IProps) => {
     return <>
         <Prompt>{question.prompt}</Prompt>
         <div style={{ height: 4 }} />
-        <Subprompt>Select many</Subprompt>
+        <Subprompt>Select one</Subprompt>
         <div style={{ height: 16 }} />
         {question.options.map((option, i) => {
             return <React.Fragment key={i}>
