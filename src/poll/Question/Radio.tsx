@@ -5,9 +5,15 @@ import { Prompt, Subprompt } from './Prompt'
 
 interface IProps {
     question: Models.Questions.IRadioQuestion
+    onAnswered: (value: number) => void
 }
-const RadioQuestion = ({ question }: IProps) => {
+const RadioQuestion = ({ question, onAnswered }: IProps) => {
     const [selected, setSelected] = React.useState<number | undefined>()
+
+    const updateSelected = (value: number) => {
+        setSelected(value)
+        onAnswered(value)
+    }
 
     return <>
         <Prompt>{question.prompt}</Prompt>
@@ -17,7 +23,7 @@ const RadioQuestion = ({ question }: IProps) => {
         {question.options.map((option, i) => {
             return <React.Fragment key={i}>
                 {i > 0 && <div style={{ height: 8 }} />}
-                <Option isSelected={selected === i} onClick={() => setSelected(i)}>{option.label}</Option>
+                <Option isSelected={selected === i} onClick={() => updateSelected(i)}>{option.label}</Option>
             </React.Fragment>
         })}
     </>

@@ -12,7 +12,7 @@ const question: Models.Questions.IShortResponse = {
 const Home = () => {
     return <div>
         <div style={{ height: 200 }} />
-        <Poll.Questions.ShortResponse question={question} />
+        <Poll.Questions.QuestionSection question={question} />
     </div>
 }
 

@@ -86,6 +86,10 @@ const Button = styled.button<{ variant?: ButtonVariant, size?: ButtonSize }>`
 
     ${props => getVariantCss(props.variant)}
     ${props => getSizeCss(props.size)}
+
+    :disabled {
+        opacity: 0.3;
+    }
 `
 
 export default Button

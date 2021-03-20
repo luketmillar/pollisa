@@ -5,14 +5,20 @@ import { Input } from 'components'
 
 interface IProps {
     question: Models.Questions.IShortResponse
+    onAnswered: (value: string) => void
 }
-const ShortResponseQuestion = ({ question }: IProps) => {
+const ShortResponseQuestion = ({ question, onAnswered }: IProps) => {
     const [response, setResponse] = React.useState<string>('')
+
+    const updateResponse = (value: string) => {
+        setResponse(value)
+        onAnswered(value)
+    }
 
     return <>
         <Prompt>{question.prompt}</Prompt>
         <div style={{ height: 16 }} />
-        <Input style={{ width: '100%' }} value={response} onChange={e => setResponse(e.target.value)} placeholder={question.placeholder} />
+        <Input style={{ width: '100%' }} value={response} onChange={e => updateResponse(e.target.value)} placeholder={question.placeholder} />
     </>
 }
 

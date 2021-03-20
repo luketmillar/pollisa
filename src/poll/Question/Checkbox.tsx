@@ -11,21 +11,28 @@ const createDefaultSelection = (count: number) => {
     return selection
 }
 
-const useCheckboxSelection = (count: number): [boolean[], (i: number) => void] => {
+const useCheckboxSelection = (count: number): [boolean[], (i: number) => boolean[]] => {
     const [selected, setSelected] = React.useState<boolean[]>(() => createDefaultSelection(count))
     const toggle = (i: number) => {
         const newSelection = [...selected]
         newSelection[i] = !newSelection[i]
         setSelected(newSelection)
+        return newSelection
     }
     return [selected, toggle]
 }
 
 interface IProps {
     question: Models.Questions.ICheckboxQuestion
+    onAnswered: (value: boolean[]) => void
 }
-const CheckboxQuestion = ({ question }: IProps) => {
+const CheckboxQuestion = ({ question, onAnswered }: IProps) => {
     const [selection, toggleOption] = useCheckboxSelection(question.options.length)
+
+    const updateOption = (i: number) => {
+        const updatedValue = toggleOption(i)
+        onAnswered(updatedValue)
+    }
 
     return <>
         <Prompt>{question.prompt}</Prompt>
@@ -35,7 +42,7 @@ const CheckboxQuestion = ({ question }: IProps) => {
         {question.options.map((option, i) => {
             return <React.Fragment key={i}>
                 {i > 0 && <div style={{ height: 8 }} />}
-                <Option isSelected={selection[i]} onClick={() => toggleOption(i)}>{option.label}</Option>
+                <Option isSelected={selection[i]} onClick={() => updateOption(i)}>{option.label}</Option>
             </React.Fragment>
         })}
     </>
