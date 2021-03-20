@@ -8,7 +8,6 @@ const Input = styled.input`
     font-size: 18px;
 
     border: 2px solid transparent;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
 
     padding: 10px 20px;
     height: 52px;
@@ -17,12 +16,12 @@ const Input = styled.input`
     color: ${Colors.black};
     background-color: transparent;
     border: 2px solid #CDCDCD;
-    box-shadow: none;
     :hover {
         border-color: #BABABA;
     }
     :focus {
         border-color: ${Colors.blue.regular};
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
     }
 `
 
