@@ -1,19 +1,33 @@
 import React from 'react'
 import * as Models from 'models'
 import * as Poll from 'poll'
-import { Button } from 'components'
 
-const question: Models.Questions.ITrueFalseQuestion = {
+const question: Models.Questions.ICheckboxQuestion = {
     id: '1',
-    type: 'true-false',
-    prompt: 'Are you tired or nah?'
+    type: 'checkboxes',
+    prompt: 'What meals do you eat?',
+    options: [{
+        label: 'Breakfast',
+        value: 'breakfast'
+    },
+    {
+        label: 'Lunch',
+        value: 'lunch'
+    },
+    {
+        label: 'Dinner',
+        value: 'dinner'
+    },
+    {
+        label: 'Dessert',
+        value: 'dessert'
+    }]
 }
 
 const Home = () => {
     return <div>
-        <Button variant="primary">Sign in</Button>
         <div style={{ height: 200 }} />
-        <Poll.Questions.TrueFalse question={question} />
+        <Poll.Questions.Checkbox question={question} />
     </div>
 }
 
