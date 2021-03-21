@@ -12,7 +12,12 @@ const CreatorRoot = () => {
     }
     return <>
         <div style={{ height: 200 }} />
-        {pollId ? <CreateQuestions.Root pollId={pollId} /> : <CreatePoll onCreate={handlecreate} />}
+        {pollId ? (
+            <CreateQuestions.Provider value={pollId}>
+                <CreateQuestions.Root />
+            </CreateQuestions.Provider>
+        )
+            : <CreatePoll onCreate={handlecreate} />}
     </>
 }
 

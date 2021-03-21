@@ -1,7 +1,9 @@
 import React from 'react'
 import { useProdux } from 'store/hooks'
+import { usePollId } from './Context'
 
-const CreateQuestions = ({ pollId }: { pollId: string }) => {
+const CreateQuestions = () => {
+    const pollId = usePollId()
     const poll = useProdux(model => model.polls.byId[pollId])
     return <>
         <h1>{poll.name}</h1>
