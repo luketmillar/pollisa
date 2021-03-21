@@ -10,7 +10,7 @@ function Routes() {
             <Route exact path="/">
                 <Home.Root />
             </Route>
-            <Route exact path="/create">
+            <Route path="/create">
                 <Creator.Root />
             </Route>
             <Route exact path="/poll/:pollId">

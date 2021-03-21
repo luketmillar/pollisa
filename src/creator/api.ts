@@ -11,7 +11,8 @@ export const createPoll = (name: string): Promise<Models.Poll> => {
                 id: v4(),
                 name,
                 creator: v4(),
-                passcode: customPasscodeGen()
+                passcode: customPasscodeGen(),
+                questions: []
             })
         }, 10)
     })

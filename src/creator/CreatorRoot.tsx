@@ -1,24 +1,24 @@
 import React from 'react'
+import { Route, Switch } from 'react-router'
+import { Router } from 'core'
 import CreatePoll from './CreatePoll'
 import * as CreateQuestions from './CreateQuestions'
 import provider from './provider'
 
 const CreatorRoot = () => {
-    const [pollId, setPollId] = React.useState<string | undefined>()
     const handlecreate = (name: string) => {
         return provider.create(name).then(id => {
-            setPollId(id)
+            Router.navigate.goTo(Router.paths.creator.poll(id).root)
         })
     }
-    return <>
-        <div style={{ height: 200 }} />
-        {pollId ? (
-            <CreateQuestions.Provider value={pollId}>
-                <CreateQuestions.Root />
-            </CreateQuestions.Provider>
-        )
-            : <CreatePoll onCreate={handlecreate} />}
-    </>
+    return <Switch>
+        <Route exact path="/create">
+            <CreatePoll onCreate={handlecreate} />
+        </Route>
+        <Route path="/create/:pollId">
+            <CreateQuestions.Root />
+        </Route>
+    </Switch>
 }
 
 export default CreatorRoot
