@@ -4,6 +4,9 @@ import { Colors } from 'styles'
 
 const Input = styled.input`
     outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     
     font-size: 18px;
 
