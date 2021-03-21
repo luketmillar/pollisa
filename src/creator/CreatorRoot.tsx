@@ -1,14 +1,17 @@
 import React from 'react'
-import NamePoll from './NamePoll'
+import CreatePoll from './CreatePoll'
+import * as api from './api'
 
 const CreatorRoot = () => {
     const handlecreate = (name: string) => {
         console.log('creating poll', name)
-        return new Promise<void>(() => { })
+        return api.createPoll(name).then(poll => {
+            console.log('created', poll)
+        })
     }
     return <>
         <div style={{ height: 200 }} />
-        <NamePoll onCreate={handlecreate} />
+        <CreatePoll onCreate={handlecreate} />
     </>
 }
 

@@ -4,7 +4,7 @@ import React from 'react'
 interface IProps {
     onCreate: (name: string) => Promise<void>
 }
-const NamePoll = ({ onCreate }: IProps) => {
+const CreatePoll = ({ onCreate }: IProps) => {
     const [isCreating, setCreating] = React.useState(false)
     const [isValid, setValid] = React.useState(false)
     const handleSubmit = React.useCallback((e: React.FormEvent) => {
@@ -33,4 +33,4 @@ const NamePoll = ({ onCreate }: IProps) => {
     </>
 }
 
-export default NamePoll
+export default CreatePoll
