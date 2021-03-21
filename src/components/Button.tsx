@@ -56,7 +56,7 @@ const getVariantCss = (variant: ButtonVariant = 'secondary') => {
 type ButtonSize = 'regular' | 'small'
 
 const Regular = css`
-    padding: 10px 40px;
+    padding: 10px 20px;
     height: 52px;
     border-radius: 12px;
 `

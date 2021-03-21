@@ -42,5 +42,25 @@ export interface ISliderResponse extends IQuestion {
     max: number
 }
 
+
+export type QuestionType = 'true-false' | 'radio' | 'checkboxes' | 'short-response' | 'long-response' | 'number-response' | 'slider-response'
+export const QuestionTypes: Array<{ type: QuestionType, name: string }> = [
+    {
+        type: 'true-false',
+        name: 'True/False'
+    },
+    {
+        type: 'radio',
+        name: 'Multiple Choice'
+    },
+    {
+        type: 'checkboxes',
+        name: 'Multiple Options'
+    },
+    {
+        type: 'short-response',
+        name: 'Short reponse'
+    }
+]
 type Question = ITrueFalseQuestion | IRadioQuestion | ICheckboxQuestion | IShortResponse | ILongResponse | INumberResponse | ISliderResponse
 export default Question

@@ -10,7 +10,8 @@ export const produx = new Produx(initialState, (state) => state, [new Logger<ISt
 const actions = {
     polls: {
         add: (poll: Models.Poll) => produx.dispatch(Instructions.Polls.AddPoll, { poll }),
-        remove: (id: string) => produx.dispatch(Instructions.Polls.RemovePoll, { id })
+        remove: (id: string) => produx.dispatch(Instructions.Polls.RemovePoll, { id }),
+        addQuestion: (pollId: string, question: Models.Question) => produx.dispatch(Instructions.Polls.AddQuestion, { pollId, question }),
     }
 }
 

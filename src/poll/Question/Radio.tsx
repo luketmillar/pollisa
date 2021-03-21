@@ -5,14 +5,14 @@ import { Prompt, Subprompt } from './Prompt'
 
 interface IProps {
     question: Models.Questions.IRadioQuestion
-    onAnswered: (value: number) => void
+    onAnswered: (value: any) => void
 }
 const RadioQuestion = ({ question, onAnswered }: IProps) => {
     const [selected, setSelected] = React.useState<number | undefined>()
 
-    const updateSelected = (value: number) => {
-        setSelected(value)
-        onAnswered(value)
+    const updateSelected = (index: number) => {
+        setSelected(index)
+        onAnswered(question.options[index].value)
     }
 
     return <>
