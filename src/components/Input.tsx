@@ -23,6 +23,9 @@ const Input = styled.input`
         border-color: ${Colors.blue.regular};
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
     }
+    :disabled {
+        opacity: 0.3;
+    }
 `
 
 export default Input
