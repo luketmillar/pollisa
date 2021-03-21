@@ -15,7 +15,7 @@ const CreatePoll = ({ onCreate }: IProps) => {
             return false
         }
         setCreating(true)
-        onCreate(pollName).then(() => setCreating(false))
+        onCreate(pollName)
     }, [onCreate])
     const onNameChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.value

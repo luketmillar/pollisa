@@ -1,5 +1,5 @@
-export default interface IResponse<T> {
+export default interface IResponse {
     id: string
     questionId: string
-    value: T
+    value: any
 }
