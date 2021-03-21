@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import * as Home from './home'
 import * as Creator from './creator'
 import * as Poll from './poll'
+import Polls from './polls'
 
 function Routes() {
     return (
@@ -15,6 +16,9 @@ function Routes() {
             </Route>
             <Route exact path="/poll/:pollId">
                 <Poll.Root />
+            </Route>
+            <Route exact path="/polls">
+                <Polls />
             </Route>
             <Route>
                 <div>404</div>
