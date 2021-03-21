@@ -7,7 +7,7 @@ export interface ITrueFalseQuestion extends IQuestion {
     type: 'true-false'
 }
 
-interface IOption {
+export interface IOption {
     value: any
     label: string
 }
