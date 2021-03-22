@@ -1,18 +1,8 @@
 import { Button, Input } from 'components'
 import React from 'react'
 import { Router } from 'core'
-import repository from 'repository'
 
 const Home = () => {
-    const [loadingUser, setLoadingUser] = React.useState(true)
-    React.useEffect(() => {
-        repository.signin().then(() => {
-            setLoadingUser(false)
-        })
-    }, [])
-    if (loadingUser) {
-        return <div>loading</div>
-    }
     return <div style={{ padding: 24 }}>
         <h1>Tadpoll</h1>
         <div style={{ height: 200 }} />

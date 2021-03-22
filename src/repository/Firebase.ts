@@ -1,6 +1,7 @@
 import fbApp from 'firebase/app'
 import firebase from 'firebase'
 import config from './configuration'
+import * as api from './api'
 
 let app: fbApp.app.App
 if (firebase.apps.length === 0) {
@@ -14,6 +15,7 @@ class Firebase {
         firebase.analytics()
     }
 
+
     public get app() {
         return app
     }
@@ -24,6 +26,14 @@ class Firebase {
 
     public get userId() {
         return app.auth().currentUser?.uid
+    }
+
+    public loadMyPolls() {
+        return api.subscribePolls(this.userId!)
+    }
+
+    public loadPoll(pollId: string) {
+        return api.subscribePoll(pollId, this.userId!)
     }
 }
 

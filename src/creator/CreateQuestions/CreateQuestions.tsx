@@ -4,15 +4,24 @@ import { Router } from 'core'
 import PollSummary from './PollSummary'
 import * as Context from './Context'
 import * as Models from 'models'
+import * as api from 'creator/api'
 import NewQuestion from './NewQuestion'
-import actions from 'store'
+import { useProdux } from 'store/hooks'
+import repository from 'repository'
 
 const CreateQuestions = () => {
     const { pollId } = useParams<{ pollId: string }>()
     const handleCreate = React.useCallback((question: Models.Question) => {
-        actions.polls.addQuestion(pollId, question)
+        api.createQuestion(pollId, question)
         Router.navigate.goTo(Router.paths.creator.poll(pollId).root)
     }, [pollId])
+    React.useEffect(() => {
+        return repository.loadPoll(pollId)
+    }, [pollId])
+    const isLoaded = useProdux(model => model.polls.byId[pollId] !== undefined)
+    if (!isLoaded) {
+        return <div>Loading</div>
+    }
     return <Context.Provider value={pollId}><Switch>
         <Route exact path="/create/:pollId/new">
             <NewQuestion onCreate={handleCreate} />
