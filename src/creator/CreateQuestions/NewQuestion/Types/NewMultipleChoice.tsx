@@ -4,10 +4,10 @@ import * as Models from 'models'
 import { v4 } from 'uuid'
 import PromptForm from './PromptForm'
 
-const create = (prompt: string, options: Models.Questions.IOption[]): Models.Questions.ICheckboxQuestion => {
+const create = (prompt: string, selectMany: boolean, options: Models.Questions.IOption[]): Models.Questions.ICheckboxQuestion | Models.Questions.IRadioQuestion => {
     return {
         id: v4(),
-        type: 'checkboxes',
+        type: selectMany ? 'checkboxes' : 'radio',
         prompt,
         options
     }
@@ -35,24 +35,30 @@ const useOptions = () => {
 }
 
 interface IProps {
-    onCreate: (question: Models.Questions.ICheckboxQuestion) => void
+    onCreate: (question: Models.Questions.ICheckboxQuestion | Models.Questions.IRadioQuestion) => void
 }
-const NewCheckbox = ({ onCreate }: IProps) => {
+const NewMultipleChoice = ({ onCreate }: IProps) => {
     const [prompt, setPrompt] = React.useState('')
+    const [selectMany, setSelectMany] = React.useState(false)
     const handleOptionsCreated = React.useCallback((options: Models.Questions.IOption[]) => {
-        onCreate(create(prompt, options))
-    }, [onCreate, prompt])
+        onCreate(create(prompt, selectMany, options))
+    }, [onCreate, prompt, selectMany])
     if (prompt === '') {
         return <PromptForm headline="What is your multiple choice prompt?" placeholder="Which of these are real?" action="Continue" onCreate={setPrompt} />
     }
-    return <PickOptions prompt={prompt} onOptionsCreated={handleOptionsCreated} />
+    return <>
+        <h2>{prompt}</h2>
+        <div style={{ height: 8 }} />
+        <FormatPicker selectMany={selectMany} onChange={setSelectMany} />
+        <div style={{ height: 16 }} />
+        <PickOptions onOptionsCreated={handleOptionsCreated} />
+    </>
 }
 
 interface IOptionsProps {
-    prompt: string
     onOptionsCreated: (options: Models.Questions.IOption[]) => void
 }
-const PickOptions = ({ prompt, onOptionsCreated }: IOptionsProps) => {
+const PickOptions = ({ onOptionsCreated }: IOptionsProps) => {
     const controller = useOptions()
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -81,8 +87,7 @@ const PickOptions = ({ prompt, onOptionsCreated }: IOptionsProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [controller.add])
     return <form style={{ display: 'contents' }} onSubmit={handleSubmit}>
-        <h3>{prompt}</h3>
-        <div style={{ height: 8 }} />
+        <h4>What are your options?</h4>
         {controller.options.map((option, i) => {
             return <React.Fragment key={option.id}>
                 <div style={{ width: '100%', display: 'flex' }}>
@@ -99,5 +104,19 @@ const PickOptions = ({ prompt, onOptionsCreated }: IOptionsProps) => {
     </form>
 }
 
+interface IFormatProps {
+    selectMany: boolean
+    onChange: (selectMany: boolean) => void
+}
+const FormatPicker = ({ selectMany, onChange }: IFormatProps) => {
+    return <>
+        <h4>What type of multiple choice?</h4>
+        <div style={{ display: 'flex', width: '100%' }}>
+            <Button style={{ flex: 1, borderTopRightRadius: 0, borderBottomRightRadius: 0 }} onClick={() => onChange(true)} variant={selectMany ? 'primary' : 'clear'}>Select many</Button>
+            <Button style={{ flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }} onClick={() => onChange(false)} variant={selectMany ? 'clear' : 'primary'}>Select one</Button>
+        </div>
+    </>
+}
 
-export default NewCheckbox
+
+export default NewMultipleChoice
